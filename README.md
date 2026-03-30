@@ -134,13 +134,13 @@ function lerp(a,b,t){return Math.round((a+(b-a)*Math.min(1,Math.max(0,t)))*2)/2;
 // ── Run constructors — all include numeric km field ───────────────────────────
 const R={
   rest:(n='Full rest.')=>({type:'rest',km:0,distance:'—',pace:null,wucd:null,note:n}),
-  easy:(km,pace,note='')=>({type:'easy',km,distance:km+'km',pace,wucd:null,note:note||'Conversational pace throughout.'}),
-  long:(km,pace,note='')=>({type:'long',km,distance:km+'km',pace,wucd:null,note:note||'Comfortable effort. Should finish feeling you had more.'}),
+  easy:(km,pace,note='')=>({type:'easy',label:'Easy Run',km,distance:km+'km',pace,wucd:null,note:note||'Conversational pace throughout.'}),
+  long:(km,pace,note='')=>({type:'long',label:'Long Run',km,distance:km+'km',pace,wucd:null,note:note||'Comfortable effort. Should finish feeling you had more.'}),
   quality:(type,label,wu,workDesc,cd,totalKm,qualPace,note)=>({
     type,km:totalKm,label,distance:'~'+totalKm+'km',pace:qualPace,
     wucd:{wu,cd},workDesc,note:note||''
   }),
-  race:(desc,distKm)=>({type:'race',km:distKm||10,distance:(distKm||10)+'km',pace:'Race effort',wucd:null,note:desc}),
+  race:(desc,distKm)=>({type:'race',label:'Race',km:distKm||10,distance:(distKm||10)+'km',pace:'Race effort',wucd:null,note:desc}),
   strOnly:()=>({type:'str-only',km:0,distance:null,pace:null,wucd:null,note:null}),
 };
 const T=(wu,work,cd,km,pace,note)=>R.quality('tempo','Tempo',wu,work,cd,km,pace,note);
